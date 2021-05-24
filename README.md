@@ -1,0 +1,1 @@
+# usos-auto-register-userscript
