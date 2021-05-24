@@ -1,3 +1,10 @@
+// ==UserScript==
+// @name     USOS Auto Register
+// @version  1.0.0
+// @namespace https://wvffle.net/
+// @include  /https?:\/\/usosweb\.pb\.edu\.pl\/kontroler\.php.*/
+// @grant    none
+
 const form = document.querySelector('.greenforms.ajaxForm')
 const register = () => {
     fetch(form.action, {
