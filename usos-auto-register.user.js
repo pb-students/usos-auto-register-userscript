@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        USOS Auto Register
-// @version     1.1.3
+// @version     1.1.4
 // @author      Kasper Seweryn
 // @namespace   https://wvffle.net/
 // @supportURL  https://github.com/pb-students/userscripts
@@ -40,12 +40,12 @@ toastr.options.timeOut = 35000
     }).catch(err => {
       console.error(err)
       toastr.error(err.message, 'Nay :<')
-      
+
       if (retry) {
         setTimeout(() => register(true), 35000)
       }
-      
-      return err
+
+      throw err
     })
   }
 
@@ -71,4 +71,3 @@ toastr.options.timeOut = 35000
     })
   }
 })()
-
