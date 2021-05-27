@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        USOS Auto Register
-// @version     1.1.2
+// @version     1.1.3
 // @author      Kasper Seweryn
 // @namespace   https://wvffle.net/
 // @supportURL  https://github.com/pb-students/userscripts
@@ -26,8 +26,8 @@ toastr.options.timeOut = 35000
     return
   }
 
-  const register = () => {
-    fetch(form.action, {
+  const register = (retry) => {
+    return fetch(form.action, {
       method : "POST",
       body: new FormData(form),
     }).then(async response => {
@@ -40,7 +40,12 @@ toastr.options.timeOut = 35000
     }).catch(err => {
       console.error(err)
       toastr.error(err.message, 'Nay :<')
-      setTimeout(register, 35000)
+      
+      if (retry) {
+        setTimeout(() => register(true), 35000)
+      }
+      
+      return err
     })
   }
 
@@ -55,7 +60,9 @@ toastr.options.timeOut = 35000
       // NOTE: Yup, they did it. With jQuery.
       toastr.info('Nie zamykaj tej karty.', 'Gotowe.', { timeOut: 0 })
       jQuery('.countdown').on('countdowncomplete', () => {
-        register()
+        register(false).catch(() => {
+          setTimeout(() => register(true), 1000)
+        })
         toastr.info('Automatyczna rejestracja', 'Wybila godzina prawdy.')
       })
 
