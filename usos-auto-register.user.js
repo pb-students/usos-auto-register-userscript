@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        USOS Auto Register
-// @version     1.1.4
+// @version     1.1.5
 // @author      Kasper Seweryn
 // @namespace   https://wvffle.net/
 // @supportURL  https://github.com/pb-students/userscripts
@@ -57,14 +57,20 @@ toastr.options.timeOut = 35000
     })
 
     btn.addEventListener('click', event => {
-      // NOTE: Yup, they did it. With jQuery.
-      toastr.info('Nie zamykaj tej karty.', 'Gotowe.', { timeOut: 0 })
-      jQuery('.countdown').on('countdowncomplete', () => {
+      const { milliseconds } = luxon.DateTime.fromSQL(document.querySelector('.countdown').dataset.date)
+        .setZone('Europe/Warsaw', { keepLocalTime: true })
+        .diffNow()
+        .toObject()
+      
+      setTimeout(() => {
         register(false).catch(() => {
           setTimeout(() => register(true), 1000)
         })
+        
         toastr.info('Automatyczna rejestracja', 'Wybila godzina prawdy.')
-      })
+      }, milliseconds)
+      
+      toastr.info('Nie zamykaj tej karty.', 'Zaczekaj na godzine prawdy.', { timeOut: milliseconds })
 
       event.preventDefault()
       return false
