@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        USOS Auto Register
-// @version     1.1.1
+// @version     1.1.2
 // @author      Kasper Seweryn
 // @namespace   https://wvffle.net/
 // @supportURL  https://github.com/pb-students/userscripts
@@ -17,9 +17,11 @@ GM_addElement('link', {
   href: 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'
 })
 
+toastr.options.progressBar = true
+toastr.options.timeOut = 35000
+
 ;(() => {
   const form = document.querySelector('.greenforms.ajaxForm')
-
   if (!form) {
     return
   }
@@ -37,23 +39,29 @@ GM_addElement('link', {
       toastr.success('Udalo sie zapisac.', 'Yay!', { timeOut: 0 })
     }).catch(err => {
       console.error(err)
-      toastr.error(err.message, 'Nay :<', { timeOut: 3500 })
+      toastr.error(err.message, 'Nay :<')
       setTimeout(register, 35000)
     })
   }
 
-  // NOTE: Yup, they did it. With jQuery.
-  jQuery(document).ready(() => {
-    jQuery('.countdown').on('countdowncomplete', register)
-  })
-
   // Add auto register button
-  for (const x of form.querySelectorAll('.submit')) {
-    const k = document.createElement('button')
-    k.className = 'submit semitransparent'
-    k.innerText = 'REJESTRUJ AUTOMATYCZNIE'
-    k.addEventListener('click', register)
-    x.parentElement.appendChild(k)
+  for (const el of form.querySelectorAll('.submit')) {
+    const btn = GM_addElement(el.parentElement, 'button', {
+      class: 'submit semitransparent',
+      textContent: 'REJESTRUJ AUTOMATYCZNIE',
+    })
+
+    btn.addEventListener('click', event => {
+      // NOTE: Yup, they did it. With jQuery.
+      toastr.info('Nie zamykaj tej karty.', 'Gotowe.', { timeOut: 0 })
+      jQuery('.countdown').on('countdowncomplete', () => {
+        register()
+        toastr.info('Automatyczna rejestracja', 'Wybila godzina prawdy.')
+      })
+
+      event.preventDefault()
+      return false
+    })
   }
 })()
 
