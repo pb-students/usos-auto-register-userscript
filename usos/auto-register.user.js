@@ -9,6 +9,7 @@
 // @include     /https?:\/\/usosweb\.pb\.edu\.pl\/kontroler\.php.*/
 // @require     https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require     https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js
+// @require     https://cdnjs.cloudflare.com/ajax/libs/luxon/1.26.0/luxon.min.js
 // @grant       GM_addElement
 // ==/UserScript==
 
