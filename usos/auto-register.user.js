@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        USOS Auto Register
-// @version     1.1.5
+// @version     1.1.6
 // @author      Kasper Seweryn
 // @namespace   https://wvffle.net/
 // @supportURL  https://github.com/pb-students/userscripts
-// @downloadURL https://raw.githubusercontent.com/pb-students/userscripts/main/usos-auto-register.user.js
-// @updateURL   https://raw.githubusercontent.com/pb-students/userscripts/main/usos-auto-register.user.js
+// @downloadURL https://raw.githubusercontent.com/pb-students/userscripts/main/usos/auto-register.user.js
+// @updateURL   https://raw.githubusercontent.com/pb-students/userscripts/main/usos/auto-register.user.js
 // @include     /https?:\/\/usosweb\.pb\.edu\.pl\/kontroler\.php.*/
 // @require     https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require     https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js
