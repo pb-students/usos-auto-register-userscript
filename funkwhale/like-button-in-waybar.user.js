@@ -5,7 +5,7 @@
 // @description  Funkwhale Like Button in Waybar
 // @author       Kasper Seweryn (wvffle)
 // @match        https://funkwhale.juniorjpdj.pl/*
-// @grant        none
+// @grant        GM_xmlhttpRequest
 // @require      https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js
 // ==/UserScript==
 
