@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         fow
+// @name         funkwhale-like-button-in-waybar
 // @namespace    https://wvffle.net/
 // @version      1.0.0
-// @description  Funkwhale over WebRTC
+// @description  Funkwhale Like Button in Waybar
 // @author       Kasper Seweryn (wvffle)
 // @match        https://funkwhale.juniorjpdj.pl/*
-// @grant        GM_xmlhttpRequest
+// @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js
 // ==/UserScript==
 
